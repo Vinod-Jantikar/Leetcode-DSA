@@ -34,19 +34,17 @@
 // It does not matter what you leave beyond the returned k (hence they are underscores).
 
 const removeDuplicates = (nums) => {
-    if(nums.length === 0) return 0;
+  if (nums.length === 0) return 0;
 
-    let k = 1;
-    for(let i = 1; i < nums.length; i++){
-        if(nums[i] !== nums[i-1]){
-            nums[k] = nums[i];
-            k++
-        }
+  let k = 1;
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[i - 1]) {
+      nums[k] = nums[i];
+      k++;
     }
-    return k;
-}
- 
-
+  }
+  return k;
+};
 
 // 27. Remove Element
 // Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
@@ -72,8 +70,6 @@ const removeDuplicates = (nums) => {
 // }
 // If all assertions pass, then your solution will be accepted.
 
- 
-
 // Example 1:
 
 // Input: nums = [3,2,2,3], val = 3
@@ -88,17 +84,58 @@ const removeDuplicates = (nums) => {
 // Note that the five elements can be returned in any order.
 // It does not matter what you leave beyond the returned k (hence they are underscores).\
 
-
-
 const removeElement = (nums, value) => {
-    if(nums.length === 0) return 0;
+  if (nums.length === 0) return 0;
 
-    let k = 0;
-    for(let i = 0; i < nums.length; i++){
-        if(nums[i] !== value){
-            nums[k] = nums[i];
-            k++
-        }
+  let k = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== value) {
+      nums[k] = nums[i];
+      k++;
     }
-    return k;
-}
+  }
+  return k;
+};
+
+// 35. Search Insert Position
+// Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+// You must write an algorithm with O(log n) runtime complexity.
+
+// Example 1:
+
+// Input: nums = [1,3,5,6], target = 5
+// Output: 2
+// Example 2:
+
+// Input: nums = [1,3,5,6], target = 2
+// Output: 1
+// Example 3:
+
+// Input: nums = [1,3,5,6], target = 7
+// Output: 4
+
+// Constraints:
+
+// 1 <= nums.length <= 104
+// -104 <= nums[i] <= 104
+// nums contains distinct values sorted in ascending order.
+// -104 <= target <= 104
+
+const searchInsertPosition = (nums, target) => {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return left;
+};
