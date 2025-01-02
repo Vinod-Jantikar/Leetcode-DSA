@@ -302,3 +302,30 @@ var sortedArrayToBST = function (nums) {
 
   return buildTree(0, nums.length - 1); // Start with the entire array
 };
+
+
+
+// 118. Pascal's Triangle
+// Solved
+// Easy
+// Topics
+// Companies
+// Given an integer numRows, return the first numRows of Pascal's triangle.
+
+// In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+
+var generate = function (numRows) {
+  const triangle = []; // Initialize the triangle array
+
+  for (let i = 0; i < numRows; i++) {
+    const row = Array(i + 1).fill(1); // Create a row with `1`s
+    for (let j = 1; j < i; j++) {
+      // Calculate non-edge values based on the previous row
+      row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+    }
+    triangle.push(row); // Add the row to the triangle
+  }
+
+  return triangle;
+};
