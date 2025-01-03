@@ -348,7 +348,7 @@ var generate = function (numRows) {
 
 // Input: nums = [1]
 // Output: 1
- 
+
 
 // Constraints:
 
@@ -360,7 +360,7 @@ var generate = function (numRows) {
 function singleNumber(nums) {
   let result = 0;
   for (const num of nums) {
-      result ^= num; // XOR each number
+    result ^= num; // XOR each number
   }
   return result;
 }
@@ -372,3 +372,47 @@ function singleNumber(nums) {
 // 3	     5 ^ 2 = 7	        XOR with 2
 // 4	     7 ^ 1 = 6	        XOR with 1
 // 5	     6 ^ 2 = 4	        XOR with 2
+
+
+// 121. Best Time to Buy and Sell Stock
+// You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+// You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+// Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+
+// Example 1:
+
+// Input: prices = [7,1,5,3,6,4]
+// Output: 5
+// Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+// Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+// Example 2:
+
+// Input: prices = [7,6,4,3,1]
+// Output: 0
+// Explanation: In this case, no transactions are done and the max profit = 0.
+
+
+// Constraints:
+
+// 1 <= prices.length <= 105
+// 0 <= prices[i] <= 104
+
+
+var maxProfit = function (prices) {
+  let minPrice = Infinity; // Initialize to a very large number
+  let maxProfit = 0;       // Initialize max profit to 0
+
+  for (const price of prices) {
+    if (price < minPrice) {
+      minPrice = price; // Update the minimum price
+    } else {
+      maxProfit = Math.max(maxProfit, price - minPrice); // Calculate profit and update max profit
+    }
+  }
+
+  return maxProfit;
+};
