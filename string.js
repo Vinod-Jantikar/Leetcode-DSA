@@ -105,7 +105,7 @@ var strStr = function (haystack, needle) {
 // Example 2:
 // Input: nums = [2,2,1,1,1,2,2]
 // Output: 2
- 
+
 // Constraints:
 // n == nums.length
 // 1 <= n <= 5 * 104
@@ -113,25 +113,25 @@ var strStr = function (haystack, needle) {
 // Follow-up: Could you solve the problem in linear time and in O(1) space?
 
 
-var majorityElement = function(nums) {
+var majorityElement = function (nums) {
     let candidate = null;
-   let count = 0;
+    let count = 0;
 
-   for (let num of nums) {
-       if (count === 0) {
-           candidate = num;
-       }
-       count += (num === candidate) ? 1 : -1;  
-   }
+    for (let num of nums) {
+        if (count === 0) {
+            candidate = num;
+        }
+        count += (num === candidate) ? 1 : -1;
+    }
 
-   return candidate;
+    return candidate;
 };
 
 
 // 219. Contains Duplicate II
 // Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
 
- 
+
 
 // Example 1:
 
@@ -145,7 +145,7 @@ var majorityElement = function(nums) {
 
 // Input: nums = [1,2,3,1,2,3], k = 2
 // Output: false
- 
+
 
 // Constraints:
 
@@ -153,17 +153,17 @@ var majorityElement = function(nums) {
 // -109 <= nums[i] <= 109
 // 0 <= k <= 105
 
-var containsNearbyDuplicate = function(nums, k) {
+var containsNearbyDuplicate = function (nums, k) {
     let indexMap = new Map();  // Store the last index of each number
 
-   for (let i = 0; i < nums.length; i++) {
-       if (indexMap.has(nums[i]) && i - indexMap.get(nums[i]) <= k) {
-           return true;  // Found a duplicate within the range
-       }
-       indexMap.set(nums[i], i);  // Update the last seen index
-   }
+    for (let i = 0; i < nums.length; i++) {
+        if (indexMap.has(nums[i]) && i - indexMap.get(nums[i]) <= k) {
+            return true;  // Found a duplicate within the range
+        }
+        indexMap.set(nums[i], i);  // Update the last seen index
+    }
 
-   return false;  // No duplicates found within the range
+    return false;  // No duplicates found within the range
 };
 
 
@@ -176,7 +176,7 @@ var containsNearbyDuplicate = function(nums, k) {
 
 // "a->b" if a != b
 // "a" if a == b
- 
+
 
 // Example 1:
 
@@ -195,7 +195,7 @@ var containsNearbyDuplicate = function(nums, k) {
 // [2,4] --> "2->4"
 // [6,6] --> "6"
 // [8,9] --> "8->9"
- 
+
 
 // Constraints:
 
@@ -204,7 +204,7 @@ var containsNearbyDuplicate = function(nums, k) {
 // All the values of nums are unique.
 // nums is sorted in ascending order.
 
-var summaryRanges = function(nums) {
+var summaryRanges = function (nums) {
     let result = [];
     let start = 0;  // Initialize the start of a range
 
@@ -222,3 +222,43 @@ var summaryRanges = function(nums) {
 
     return result;
 };
+
+// Move Zeroes
+
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+// Note that you must do this in-place without making a copy of the array.
+
+
+
+// Example 1:
+
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+// Example 2:
+
+// Input: nums = [0]
+// Output: [0]
+
+
+// Constraints:
+
+// 1 <= nums.length <= 104
+// -231 <= nums[i] <= 231 - 1
+
+function moveZeroes(nums) {
+    let nonZeroIndex = 0; // Pointer for tracking the position of non-zero elements
+
+    // Move all non-zero elements to the front
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== 0) {
+            nums[nonZeroIndex] = nums[i];
+            nonZeroIndex++;
+        }
+    }
+
+    // Fill the rest of the array with zeros
+    for (let i = nonZeroIndex; i < nums.length; i++) {
+        nums[i] = 0;
+    }
+}
